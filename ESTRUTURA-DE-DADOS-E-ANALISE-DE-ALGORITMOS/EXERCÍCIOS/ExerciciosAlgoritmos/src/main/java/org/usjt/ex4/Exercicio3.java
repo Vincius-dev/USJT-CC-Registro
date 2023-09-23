@@ -3,16 +3,13 @@ package org.usjt.ex4;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Exercicio2 {
+public class Exercicio3 {
 
     public static void main(String[] args){
-
-        //02) É possível também comparar a quantidade de atribuições e a quantidade de comparações dos
-        // métodos contando-as. Para isso é necessário colocar uma variável contador e a cada atribuição
-        // incluir uma instrução que some um ao contador.
-        //Altere os três métodos de ordenação estudados para que eles RETORNEM a quantidade de ATRIBUIÇÕES
-        // realizadas com elementos do vetor. Verifique o que acontece em cada um dos casos, aumentando o
-        // número de elementos e verificando a resposta dos métodos com a quantidade de atribuições.
+        //03) Usando o mesmo raciocínio do exercício anterior, altere os três métodos de ordenação do exercício B
+        // para que eles RETORNEM agora a quantidade de COMPARAÇÕES realizadas com elementos do vetor. Verifique
+        // o que acontece em cada um dos casos, aumentando o número de elementos e verificando o número de comparações.
+        // Coloque aqui a classe resultante dos seus testes.
 
         int[] listaAleatoria = new int[1000];
 
@@ -51,7 +48,7 @@ public class Exercicio2 {
         long tempoInicialMili = System.currentTimeMillis();
         long tempoInicialNano = System.nanoTime();
 
-        System.out.println("N° de atribuições: "+ tipoAlgoritmo.realizaOrdenacao(listaNaoOrdenada));
+        System.out.println("N° de Comparações: "+ tipoAlgoritmo.realizaOrdenacao(listaNaoOrdenada));
 
         long tempoFinalMili = System.currentTimeMillis();
         long tempoFinalNano= System.nanoTime();
@@ -71,24 +68,23 @@ public class Exercicio2 {
         public int realizaOrdenacao(int[] iVet) {
             int iA, iB, iC;
             int iT;
-            int contadorDeAtribuicoes = 0;
+            int contadorDeComparacoes = 0;
 
             for (iA=0; iA < iVet.length-1; iA++){
                 iC=iA;
                 iT=iVet[iA];
-                contadorDeAtribuicoes ++;
                 for (iB=iA+1; iB < iVet.length; iB++){
                     if (iVet[iB] < iT){
                         iC=iB;
                         iT=iVet[iB];
-                        contadorDeAtribuicoes ++;
+                        contadorDeComparacoes++;
                     }
                 }
                 iVet[iC]=iVet[iA];
                 iVet[iA]=iT;
-                contadorDeAtribuicoes += 2;
             }
-            return contadorDeAtribuicoes;
+
+            return contadorDeComparacoes;
         }
     }
 
@@ -98,19 +94,19 @@ public class Exercicio2 {
         public int realizaOrdenacao(int[] iVet) {
             int iA, iB;
             int iT;
-            int contadorDeAtribuicoes = 0;
+            int contadorDeComparacoes = 0;
 
-            for (iA=1; iA< iVet.length; iA++){
+            for (iA=1; iA < iVet.length; iA++){
                 for (iB=iVet.length-1; iB >= iA; iB--){
                     if (iVet[iB-1] > iVet[iB]){
                         iT=iVet[iB-1];
                         iVet[iB-1]=iVet[iB];
                         iVet[iB]=iT;
-                        contadorDeAtribuicoes += 3;
+                        contadorDeComparacoes ++;
                     }
                 }
             }
-            return contadorDeAtribuicoes;
+            return contadorDeComparacoes;
         }
     }
 
@@ -120,21 +116,20 @@ public class Exercicio2 {
         public int realizaOrdenacao(int[] iVet) {
             int iA, iB;
             int iT;
-            int contadorDeAtribuicoes = 0;
+            int contadorDeComparacoes = 0;
 
             for (iA=1; iA < iVet.length; iA++){
                 iT=iVet[iA];
                 iB=iA-1;
-                contadorDeAtribuicoes++;
                 while (iB >= 0 && iT < iVet[iB]){
                     iVet[iB+1]=iVet[iB];
                     iB--;
-                    contadorDeAtribuicoes ++;
+                    contadorDeComparacoes ++;
                 }
                 iVet[iB+1]=iT;
-                contadorDeAtribuicoes++;
             }
-            return contadorDeAtribuicoes;
+            return contadorDeComparacoes;
         }
     }
 }
+

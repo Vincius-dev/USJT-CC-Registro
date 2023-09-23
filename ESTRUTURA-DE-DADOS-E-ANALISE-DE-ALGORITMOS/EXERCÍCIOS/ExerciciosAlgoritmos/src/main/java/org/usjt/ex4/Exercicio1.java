@@ -58,7 +58,7 @@ public class Exercicio1 {
     }
 
     public interface AlgoritmoOrdenacao {
-        void realizaOrdenacao(int iVet[]);
+        void realizaOrdenacao(int[] iVet);
     }
 
     public static class Selecao implements AlgoritmoOrdenacao {
